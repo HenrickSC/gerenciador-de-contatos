@@ -39,8 +39,3 @@ streamlit run app.py
 - Streamlit  
 
 ---
-
-# 🤝 Contribuições
-
-Contribuições são muito bem-vindas!  
-Sinta-se à vontade para abrir uma *issue* ou enviar um *pull request* com suas ideias e melhorias.
