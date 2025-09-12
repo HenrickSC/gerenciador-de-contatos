@@ -6,6 +6,8 @@ Seu gerenciador pessoal de contatos, simples, elegante e prático.
 ## 🌟 Demonstração
 Veja como o aplicativo funciona em um vídeo rápido!
 
+https://github.com/user-attachments/assets/f1adbb7e-b1c5-470b-a0fa-b89b961a6bc7
+
 ---
 
 ## 🚀 Como Executar o Projeto
