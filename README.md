@@ -12,15 +12,23 @@ https://github.com/user-attachments/assets/f1adbb7e-b1c5-470b-a0fa-b89b961a6bc7
 
 ## 🚀 Como Executar o Projeto
 
-Clone este repositório para sua máquina local:
+1. Clone este repositório para sua máquina local:
 
 ```bash
 git clone https://github.com/HenrickSC/gerenciador-de-contatos.git
+```
 
+2. Acesse a pasta do projeto:
+```bash
 cd gerenciador-de-contatos
+```
 
+3. Instale o streamlit:
+```bash
 pip install streamlit
-
+```
+4. Execute o aplicativo:
+```bash
 streamlit run app.py
 ```
 
