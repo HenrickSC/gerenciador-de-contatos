@@ -20,6 +20,7 @@ cd gerenciador-de-contatos
 pip install streamlit
 
 streamlit run app.py
+```
 
 # 📂 Estrutura do Projeto
 
