@@ -1,23 +1,33 @@
+from supabase_client import supabase
+
 class Agenda:
-    """Gerencia a lista de contatos."""
-    def __init__(self):
-        self.contatos = {}
 
     def adicionar_contato(self, nome, telefone, email):
-        if telefone in self.contatos:
+        """Adiciona um novo contato ao banco de dados."""
+        response = supabase.table('contacts').select('telefone').eq('telefone', telefone).execute()
+        if response.data:
             return f"Erro: O contato com o telefone '{telefone}' já existe."
-        
-        self.contatos[telefone] = {
+        data = {
             "nome": nome,
+            "telefone": telefone,
             "email": email
         }
-        return f"Contato '{nome}' adicionado com sucesso!"
+        response = supabase.table('contacts').insert(data).execute()
 
-    def exibir_contatos(self):
-        return self.contatos
+        if response.data:
+            return f"{nome} adicionado com sucesso!"
+        else:
+            return "Erro: Não foi possível adicionar o contato."
+
+    def exibir_contatos(self) -> list:
+        """Busca e retorna todos os contatos do banco de dados."""
+        response = supabase.table('contacts').select('*').execute()
+        return response.data
 
     def remover_contato(self, telefone):
-        if telefone in self.contatos:
-            del self.contatos[telefone]
-            return f"Contato com o telefone '{telefone}' removido com sucesso."
-        return f"Erro: O contato com o telefone '{telefone}' não foi encontrado."
+        """Remove um contato do banco de dados usando o telefone como filtro."""
+        response = supabase.table('contacts').delete().eq('telefone', telefone).execute()
+        if response.data:
+            return "Contato removido com sucesso!"
+        else:
+            return "Erro: Não foi possível remover o contato."

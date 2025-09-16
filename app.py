@@ -36,11 +36,11 @@ elif opcao == "Exibir Contatos":
     st.subheader("Lista de Contatos")
     contatos = st.session_state.agenda.exibir_contatos()
     if contatos:
-        for telefone, dados in contatos.items():
-            st.markdown(f"**Nome:** {dados['nome']}")
-            st.write(f"**Telefone:** {telefone}")
-            st.write(f"**Email:** {dados['email']}")
+        for contato in contatos:
             st.markdown("---")
+            st.markdown(f"**Nome:** {contato['nome']}")
+            st.write(f"**Telefone:** {contato['telefone']}")
+            st.write(f"**Email:** {contato['email']}")
     else:
         st.info("Nenhum contato na agenda.")
 
@@ -49,20 +49,14 @@ elif opcao == "Remover Contato":
     contatos = st.session_state.agenda.exibir_contatos()
     if contatos:
         # Cria uma lista para exibição (nome - telefone)
-        lista_opcoes = [f"{dados['nome']} - {telefone}" for telefone, dados in contatos.items()]
-        
-        # Cria um mapeamento para obter o telefone a partir da opção selecionada
-        mapa_opcoes = {f"{dados['nome']} - {telefone}": telefone for telefone, dados in contatos.items()}
+        lista_opcoes = [f"{contato['nome']} - {contato['telefone']}" for contato in contatos]
 
         contato_selecionado = st.selectbox("Selecione o contato para remover:", lista_opcoes)
 
         if st.button("Remover"):
-            telefone_para_remover = mapa_opcoes[contato_selecionado]
+            telefone_para_remover = contato_selecionado.split(' - ')[1]
             mensagem = st.session_state.agenda.remover_contato(telefone_para_remover)
-            if mensagem.startswith("Erro"):
-                st.error(mensagem)
-            else:
-                st.success(mensagem)
-                st.rerun()
+            st.success(mensagem)
+            st.rerun()
     else:
         st.info("Não há contatos para remover.")

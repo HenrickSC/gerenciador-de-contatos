@@ -3,3 +3,6 @@ __pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+#ignora as chaves de acesso do banco
+supabase_client.py
